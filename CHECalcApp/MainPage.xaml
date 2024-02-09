@@ -30,6 +30,67 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+
+            <Grid BackgroundColor="Azure">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>    
+                <Label Text="0, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Column="1" Text="0, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Column="2" Text="0, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Column="3" Text="0, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Column="4" Text="0, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                <Label Grid.Row="1" Text="1, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="1, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="2" Text="1, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="3" Text="1, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="4" Text="1, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+    
+                <Label Grid.Row="2" Text="2, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="2, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="2" Text="2, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="3" Text="2, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="4" Text="2, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+
+                <Label Grid.Row="3" Text="3, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Row="3" Grid.Column="1" Text="3, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="3" Grid.Column="2" Text="3, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="3" Grid.Column="3" Text="3, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="3" Grid.Column="4" Text="3, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+         
+                <Label Grid.Row="4" Text="4, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Row="4" Grid.Column="1" Text="4, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="4" Grid.Column="2" Text="4, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="4" Grid.Column="3" Text="4, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="4" Grid.Column="4" Text="4, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+         
+                <Label Grid.Row="5" Text="5, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Row="5" Grid.Column="1" Text="5, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="5" Grid.Column="2" Text="5, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="5" Grid.Column="3" Text="5, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="5" Grid.Column="4" Text="5, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        
+                <Label Grid.Row="6" Text="6, 0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                <Label Grid.Row="6" Grid.Column="1" Text="6, 1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="6" Grid.Column="2" Text="6, 2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="6" Grid.Column="3" Text="6, 3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                <Label Grid.Row="6" Grid.Column="4" Text="6, 4" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Grid>
+
         </VerticalStackLayout>
     </ScrollView>
 
