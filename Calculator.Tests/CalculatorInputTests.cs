@@ -42,7 +42,7 @@ namespace Calculator.Tests
                 prevKey = inputKey;
             }
 
-            Assert.AreEqual("11112345", actual);
+            Assert.AreEqual("12345", actual);
         }
 
         [TestMethod]
@@ -197,6 +197,7 @@ namespace Calculator.Tests
 
         [DataTestMethod]
         [DataRow("0", "C", "+", "1 + ", "0")]
+        [DataRow("3", "=", "=", "1 + 2 = ", "0")]
         public void CancelCancelTest(string keyText, string prevKey, string prevOperator, string equationText, string expected)
         {
             // Arrange

@@ -113,7 +113,15 @@ namespace Calculator
                     {
                         keyText = "0";
                     }
+
                     if (prevKey == key)
+                    {
+                        prevValue = null;
+                        prevOperator = string.Empty;
+                        equationText = string.Empty;
+                    }
+
+                    if(prevOperator == "=")
                     {
                         prevValue = null;
                         prevOperator = string.Empty;
