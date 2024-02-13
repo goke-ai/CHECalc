@@ -21,7 +21,7 @@
 
             <Label
                 Text="{Binding EquationText}"
-                BackgroundColor="Silver"
+                MinimumHeightRequest="20"
                 VerticalOptions="Center"
                 HorizontalOptions="Fill"
                 HorizontalTextAlignment="End"/>
@@ -30,7 +30,6 @@
                 Text="{Binding Text}"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1"
-                BackgroundColor="Silver"
                 VerticalOptions="Center"
                 HorizontalOptions="Fill"
                 HorizontalTextAlignment="End"/>
