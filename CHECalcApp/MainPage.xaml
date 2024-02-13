@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CHECalcApp.MainPage">
+             x:Class="CHECalcApp.MainPage"
+             xmlns:viewmodel="clr-namespace:CHECalcApp.ViewModel"
+             x:DataType="viewmodel:MainViewModel">
 
+    <ContentPage.Resources>
+        <x:Double x:Key="OperatorFontSize">28</x:Double>
+    </ContentPage.Resources>
+    
     <ScrollView>
         <VerticalStackLayout
             Padding="30, 10, 30, 0"
@@ -14,14 +20,18 @@
                 SemanticProperties.Description="dot net bot in a race car number eight" />-->
 
             <Label
-                Text="0 x 3 + (2 x 3)"
+                Text="{Binding EquationText}"
+                BackgroundColor="Silver"
+                VerticalOptions="Center"
                 HorizontalOptions="Fill"
                 HorizontalTextAlignment="End"/>
 
             <Label
-                Text="012345678912141618"
+                Text="{Binding Text}"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1"
+                BackgroundColor="Silver"
+                VerticalOptions="Center"
                 HorizontalOptions="Fill"
                 HorizontalTextAlignment="End"/>
 
@@ -40,16 +50,7 @@
                 />
 
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
+            <Grid RowDefinitions="50,50,50,50,50,50,50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -57,74 +58,86 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button FontSize="14" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Text="2nd" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="1" Text="&#x03C0;" />
-                <Button FontSize="16" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="2" Text="&#x1D452;" />
-                <Button FontSize="Large" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="3" Text="C" />
-                <Button FontSize="32" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="4" Text="&#x232B;" />
+                
+                <Button FontSize="Default" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Text="2nd" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="1" Text="&#x03C0;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="2" Text="&#x1D452;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="3" 
+                        Text="C" Command="{Binding InputKeyCommand}" CommandParameter="C" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Column="4" Text="&#x232B;" />
 
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Text="&#x1D465;&#x00B2;"/>
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="1" Text="&#x00B9;&#x2044;&#x1D465;" />
-                <Button FontSize="16" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="2" Text="&#x2502;&#x1D465;&#x2502;" />
-                <Button FontSize="16" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="3" Text="exp" />
-                <Button  Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="4" Text="mod" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Text="&#x1D465;&#x00B2;"/>
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="1" Text="&#x00B9;&#x2044;&#x1D465;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="2" Text="&#x2502;&#x1D465;&#x2502;" />
+                <Button FontSize="Default" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="3" Text="exp" />
+                <Button FontSize="Default" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="4" Text="mod" />
 
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Text="&#x221A;&#x203E;"/>
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="(" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="1" Text="(" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint=")" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="2" Text=")" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="3" Text="&#x1D45B;&#x0021;" />
-                <Button FontSize="32" Margin="1" SemanticProperties.Hint="/" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="4" Text="&#x00F7;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Text="&#x221A;&#x203E;"/>
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="(" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="1" Text="(" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint=")" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="2" Text=")" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="3" Text="&#x1D45B;&#x0021;" />
+                <Button FontSize="{StaticResource OperatorFontSize}" Margin="1" SemanticProperties.Hint="/" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="4" 
+                        Text="&#x00F7;" Command="{Binding InputKeyCommand}" CommandParameter="/"/>
 
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="3" Text="&#x1D465;&#x02B8;"/>
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="7" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="1" Text="7" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="8" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="2" Text="8" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="9" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="3" Text="9" />
-                <Button FontSize="32" Margin="1" SemanticProperties.Hint="x" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="4" Text="&#x00D7;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="3" Text="&#x1D465;&#x02B8;"/>
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="7" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="1" 
+                        Text="7" Command="{Binding InputKeyCommand}" CommandParameter="7" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="8" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="2" 
+                        Text="8" Command="{Binding InputKeyCommand}" CommandParameter="8" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="9" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="3" 
+                        Text="9" Command="{Binding InputKeyCommand}" CommandParameter="9" />
+                <Button FontSize="{StaticResource OperatorFontSize}" Margin="1" SemanticProperties.Hint="x" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="4" 
+                        Text="&#x00D7;" Command="{Binding InputKeyCommand}" CommandParameter="*" />
 
-                <Button FontSize="16" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="4" Text=""/>
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="4" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="1" Text="4" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="5" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="2" Text="5" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="6" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="3" Text="6" />
-                <Button FontSize="32" Margin="1" SemanticProperties.Hint="-" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="4" Text="&#x2212;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="4" Text="" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="4" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="1" 
+                        Text="4" Command="{Binding InputKeyCommand}" CommandParameter="4" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="5" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="2" 
+                        Text="5" Command="{Binding InputKeyCommand}" CommandParameter="5" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="6" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="3" 
+                        Text="6" Command="{Binding InputKeyCommand}" CommandParameter="6" />
+                <Button FontSize="{StaticResource OperatorFontSize}" Margin="1" SemanticProperties.Hint="-" HorizontalOptions="Fill" Grid.Row="4" Grid.Column="4" 
+                        Text="&#x2212;" Command="{Binding InputKeyCommand}" CommandParameter="-" />
 
-                <Button FontSize="16" Margin="1"
+                <Button FontSize="Default" Margin="1"
                     x:Name="_5Btn"
                     Text="log" 
                     SemanticProperties.Hint=""
                     HorizontalOptions="Fill"
-                 Grid.Row="5" />
-                <Button FontSize="18" Margin="1"
-                    x:Name="OneBtn"
-                    Text="1" 
+                    Grid.Row="5" />
+                <Button FontSize="Small" Margin="1"
+                    Text="1" Command="{Binding InputKeyCommand}" CommandParameter="1"
                     SemanticProperties.Hint="1"
                     HorizontalOptions="Fill"
-                 Grid.Row="5" Grid.Column="1" />
-                <Button FontSize="18" Margin="1"
+                    Grid.Row="5" Grid.Column="1" />
+                <Button FontSize="Small" Margin="1"
                     x:Name="TwoBtn"
-                    Text="2" 
+                    Text="2" Command="{Binding InputKeyCommand}" CommandParameter="2"
                     SemanticProperties.Hint="2"
                     HorizontalOptions="Fill"
-                 Grid.Row="5" Grid.Column="2" />
-                <Button FontSize="18" Margin="1"
+                    Grid.Row="5" Grid.Column="2" />
+                <Button FontSize="Small" Margin="1"
                     x:Name="ThreeBtn"
-                    Text="3" 
+                    Text="3" Command="{Binding InputKeyCommand}" CommandParameter="3"
                     SemanticProperties.Hint="3"
                     HorizontalOptions="Fill"
-                 Grid.Row="5" Grid.Column="3" />
-                <Button FontSize="32" Margin="1"
+                    Grid.Row="5" Grid.Column="3" />
+                <Button FontSize="{StaticResource OperatorFontSize}" Margin="1"
                     x:Name="PlusBtn"
-                    Text="+" 
+                    Text="+" Command="{Binding InputKeyCommand}" CommandParameter="+"
                     SemanticProperties.Hint="+"
                     HorizontalOptions="Fill"
-                  Grid.Row="5" Grid.Column="4" >
-                    
-                </Button>
+                    Grid.Row="5" Grid.Column="4" />
 
-                <Button FontSize="16" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="6" Text="ln" />
-                <Button FontSize="30" Margin="1" SemanticProperties.Hint="+/-" HorizontalOptions="Fill" Grid.Row="6" Grid.Column="1" Text="&#x00B1;" />
-                <Button FontSize="18" Margin="1" SemanticProperties.Hint="0" HorizontalOptions="Fill" Grid.Row="6" Grid.Column="2" Text="0" />
-                <Button FontSize="Large" Margin="1" SemanticProperties.Hint="." HorizontalOptions="Fill" Grid.Row="6" Grid.Column="3" Text="." />
-                <Button FontSize="32" Margin="1" SemanticProperties.Hint="=" HorizontalOptions="Fill" Grid.Row="6" Grid.Column="4" Text="=" />
+                <Button FontSize="Micro" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="6" Text="ln" />
+                <Button FontSize="{StaticResource OperatorFontSize}" Margin="1" SemanticProperties.Hint="+/-" HorizontalOptions="Fill" Grid.Row="6" Grid.Column="1" 
+                        Text="&#x00B1;" Command="{Binding InputKeyCommand}" CommandParameter="+/-" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="0" HorizontalOptions="Fill" Grid.Row="6" Grid.Column="2" 
+                        Text="0" Command="{Binding InputKeyCommand}" CommandParameter="0" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="." HorizontalOptions="Fill" Grid.Row="6" Grid.Column="3" 
+                        Text="." Command="{Binding InputKeyCommand}" CommandParameter="." />
+                <Button FontSize="{StaticResource OperatorFontSize}" Margin="1" SemanticProperties.Hint="=" HorizontalOptions="Fill" Grid.Row="6" Grid.Column="4" 
+                        Text="=" Command="{Binding InputKeyCommand}" CommandParameter="=" />
 
 
             </Grid>
