@@ -34,65 +34,53 @@ public partial class MainViewModel : ObservableObject
     {
         if (numbers.Contains(key))
         {
-            KeyText = calculatorInput.ProcessNumbers(KeyText, key, prevKey);
-            Text = KeyText;
-
-            if (prevOperator == "=")
+            var kText = KeyText;
+            var eqText = EquationText;
+            if (calculatorInput.Numbers(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators))
             {
-                EquationText = string.Empty;
+                Text = KeyText = kText;
+                EquationText = eqText;
             }
         }
         else if (key == ".")
         {
-            KeyText = calculatorInput.ProcessDecimalPoint(KeyText, key, prevKey);
-            Text = KeyText;
+            var kText = KeyText;
+            var eqText = EquationText;
+            if (calculatorInput.Point(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators))
+            {
+                Text = KeyText = kText;
+                EquationText = eqText;
+            }
         }
         else if(key == "+/-")
         {
-            //if(numbers.Contains(prevKey) )
+            var kText = KeyText;
+            var eqText = EquationText;
+            if (calculatorInput.Negate(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators))
             {
-                var y = decimal.Parse(KeyText) * -1;
-                KeyText = CalculatorInput.FormatOutput(y);
+                Text = KeyText = kText;
+                EquationText = eqText;
             }
-            Text = KeyText;
         }
         else if (operators.Contains(key))
         {
-            if (operators.Contains(prevKey))
+            //prevOperator = key;
+            var kText = KeyText;
+            var eqText = EquationText;
+            if (calculatorInput.Operators(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators))
             {
-                if (prevOperator == "=")
-                {
-                    EquationText = Text + " " + key + " ";
-                }
-                else
-                {
-                    string searchText = (KeyText + " " + prevKey + " ");
-                    int i = EquationText.LastIndexOf(searchText);
-
-                    EquationText = EquationText.Remove(i);
-                    EquationText += KeyText + " " + key + " ";
-                }
+                Text = KeyText = kText;
+                EquationText = eqText;
             }
-            else
-            {
-                EquationText += KeyText + " " + key + " ";
-
-                
-                Text = calculatorInput.ProcessOperator(ref prevValue, KeyText, key, prevOperator);
-
-                
-            }
-
-            prevOperator = key;
         }
         else if (key == "C")
         {
-            var k = KeyText;
-            var eq = EquationText;
-            if(calculatorInput.Cancel(ref k, ref prevKey, ref prevValue, ref prevOperator,  ref eq, key, numbers, operators))
+            var kText = KeyText;
+            var eqText = EquationText;
+            if (calculatorInput.Cancel(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators))
             {
-                Text = KeyText = k;
-                EquationText = eq;
+                Text = KeyText = kText;
+                EquationText = eqText;
             }
             
         }

@@ -9,38 +9,11 @@ namespace Calculator
 {
     public class CalculatorInput
     {
-        public string ProcessDecimalPoint(string keyText, string key, string prevKey)
+
+        public bool Numbers(ref string keyText, ref string prevKey, ref decimal? prevValue, ref string prevOperator, ref string equationText, string key, string[] numbers, string[] operators)
         {
-            string[] operators = { "+", "-", "/", "*" };
-
-            if (operators.Contains(prevKey))
+            if (numbers.Contains(key))
             {
-                keyText = "0";
-            }
-
-            if (!keyText.Contains(key))
-            {
-                if (string.IsNullOrEmpty(prevKey) || keyText == "0")
-                {
-                    keyText = "0.";
-                }
-                else
-                {
-                    keyText += key;
-                }
-            }
-            //Text = KeyText;
-
-            return keyText;
-        }
-
-        public string ProcessNumbers(string keyText, string key,  string prevKey)
-        {
-            string[] numbers = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-            string[] operators = { "+", "-", "/", "*", "=" };
-
-            //if (numbers.Contains(key))
-            //{
                 if (operators.Contains(prevKey))
                 {
                     keyText = "0";
@@ -55,43 +28,105 @@ namespace Calculator
                     keyText += key;
                 }
 
-                //Text = keyText;
-            //}
+                if (prevOperator == "=")
+                {
+                    equationText = string.Empty;
+                }
 
-            return keyText;
+                prevKey = key;
+
+                return true;
+            }
+            return false;
         }
 
-        public string ProcessOperator(ref decimal? prevValue, string keyText, string key,  string prevOperator)
+        public bool Point(ref string keyText, ref string prevKey, ref decimal? prevValue, ref string prevOperator, ref string equationText, string key, string[] numbers, string[] operators)
         {
-            if (prevValue is null)
+            if (key == ".")
             {
-                prevValue = decimal.Parse(keyText);
-            }
-            else
-            {
-                switch (prevOperator)
+                if (operators.Contains(prevKey))
                 {
-                    case "+":
-                        prevValue += decimal.Parse(keyText);
-                        break;
-                    case "-":
-                        prevValue -= decimal.Parse(keyText);
-                        break;
-                    case "/":
-                        prevValue /= decimal.Parse(keyText);
-                        break;
-                    case "*":
-                        prevValue *= decimal.Parse(keyText);
-                        break;
-                    case "=":
-                        prevValue = decimal.Parse(keyText);
-                        break;
-                    default:
-                        break;
+                    keyText = "0";
                 }
+
+                if (!keyText.Contains(key))
+                {
+                    if (string.IsNullOrEmpty(prevKey) || keyText == "0")
+                    {
+                        keyText = "0.";
+                    }
+                    else
+                    {
+                        keyText += key;
+                    }
+                }
+
+                prevKey = key;
+
+                return true;
             }
-            //Text = prevValue.Value.ToString("0.###############################");
-            return FormatOutput(prevValue.Value);
+            return false;
+        }
+
+        public bool Operators(ref string keyText, ref string prevKey, ref decimal? prevValue, ref string prevOperator, ref string equationText, string key, string[] numbers, string[] operators)
+        {
+            if (operators.Contains(key))
+            {
+                if (operators.Contains(prevKey))
+                {
+                    if (prevOperator == "=")
+                    {
+                        equationText = keyText + " " + key + " ";
+                    }
+                    else
+                    {
+                        string searchText = (keyText + " " + prevKey + " ");
+                        int i = equationText.LastIndexOf(searchText);
+
+                        equationText = equationText.Remove(i);
+                        equationText += keyText + " " + key + " ";
+                    }
+                }
+                else
+                {
+                    equationText += keyText + " " + key + " ";
+
+                    if (prevValue is null)
+                    {
+                        prevValue = decimal.Parse(keyText);
+                    }
+                    else
+                    {
+                        switch (prevOperator)
+                        {
+                            case "+":
+                                prevValue += decimal.Parse(keyText);
+                                break;
+                            case "-":
+                                prevValue -= decimal.Parse(keyText);
+                                break;
+                            case "/":
+                                prevValue /= decimal.Parse(keyText);
+                                break;
+                            case "*":
+                                prevValue *= decimal.Parse(keyText);
+                                break;
+                            case "=":
+                                prevValue = decimal.Parse(keyText);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    keyText = FormatOutput(prevValue.Value);
+                }                
+
+                prevOperator = prevKey = key;
+
+                return true;
+            }
+
+            return false;
         }
 
         public static string FormatOutput(decimal value)
@@ -135,6 +170,26 @@ namespace Calculator
             }
 
             return false;
+        }
+
+        public bool Negate(ref string keyText, ref string prevKey, ref decimal? prevValue, ref string prevOperator, ref string equationText, string key, string[] numbers, string[] operators)
+        {
+            if (key == "+/-")
+            {
+                var y = decimal.Parse(keyText) * -1;
+                keyText = CalculatorInput.FormatOutput(y);
+
+                prevKey = key;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool BracketOpen(ref string keyText, ref string prevKey, ref decimal? prevValue, ref string prevOperator, ref string equationText, string key, string[] numbers, string[] operators)
+        {
+            throw new NotImplementedException();
         }
     }
 }
