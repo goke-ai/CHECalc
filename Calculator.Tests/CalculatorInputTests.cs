@@ -411,7 +411,36 @@ namespace Calculator.Tests
             //Assert.AreEqual(equationTextExpected, equationText);
         }
 
-        
+        [DataTestMethod]
+        [DataRow("0", "", "", "", "0")]
+
+        public void BracketOpenTest(string keyText, string prevKey, string prevOperator, string equationText, string expected)
+        {
+            // Arrange
+            var calculatorInput = new CalculatorInput();
+
+            decimal? prevValue = 10;
+
+            string[] numbers = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            string[] operators = { "+", "-", "/", "*", "=" };
+
+            string key = "+/-";
+
+            //var prevValueExpected = prevValue;
+            //var prevOperatorExpected = prevOperator;
+            //var equationTextExpected = equationText;
+
+            // Act
+            bool isDone = calculatorInput.BracketOpen(ref keyText, ref prevKey, ref prevValue, ref prevOperator, ref equationText, key, numbers, operators);
+
+            // Assert
+            Assert.AreEqual(expected, keyText);
+            Assert.IsTrue(isDone);
+            Assert.AreEqual(key, prevKey);
+            //Assert.AreEqual(prevValueExpected, prevValue);
+            //Assert.AreEqual(prevOperatorExpected, prevOperator);
+            //Assert.AreEqual(equationTextExpected, equationText);
+        }
 
     }
 }
