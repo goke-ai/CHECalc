@@ -137,7 +137,7 @@ See you tomorrow.
 - Add inner(s) Open and Close brackets
 
 
-- ![alt text](https://github.com/goke-ai/checalc/blob/main/image.jpg?raw=true)
+- ![alt text](https://github.com/goke-ai/CHECalc/blob/main/readme/Screenshot%202024-02-15%20214416.png?raw=true)
 
 
 
