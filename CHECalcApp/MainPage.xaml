@@ -72,11 +72,14 @@
                 <Button FontSize="Default" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="4" Text="mod" />
 
                 <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Text="&#x221A;&#x203E;"/>
-                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="(" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="1" Text="(" />
-                <Button FontSize="Small" Margin="1" SemanticProperties.Hint=")" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="2" Text=")" />
-                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="3" Text="&#x1D45B;&#x0021;" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="(" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="1" 
+                        Text="(" Command="{Binding InputKeyCommand}" CommandParameter="(" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint=")" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="2" 
+                        Text=")" Command="{Binding InputKeyCommand}" CommandParameter=")" />
+                <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="3" 
+                        Text="&#x1D45B;&#x0021;" Command="{Binding InputKeyCommand}" CommandParameter="n!" />
                 <Button FontSize="{StaticResource OperatorFontSize}" Margin="1" SemanticProperties.Hint="/" HorizontalOptions="Fill" Grid.Row="2" Grid.Column="4" 
-                        Text="&#x00F7;" Command="{Binding InputKeyCommand}" CommandParameter="/"/>
+                        Text="&#x00F7;" Command="{Binding InputKeyCommand}" CommandParameter="/" />
 
                 <Button FontSize="Small" Margin="1" SemanticProperties.Hint="" HorizontalOptions="Fill" Grid.Row="3" Text="&#x1D465;&#x02B8;"/>
                 <Button FontSize="Small" Margin="1" SemanticProperties.Hint="7" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="1" 

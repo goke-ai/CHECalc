@@ -38,6 +38,17 @@ Why?. I have registered for my Apple Developers account. So I can't connect to m
 
 
 
+# Day 2
+Feb 9
+
+I layout the keypad in scientific calculator format. The layout was in grid 7x5. I still plan to add 2nd, 3rd and STO functions to the keypads.  
+
+## Work
+## Features
+- Add the Calculator Key buttons in XAML
+- 
+
+
 # Day 5
 Feb 12, 2024
 ## Work
@@ -99,19 +110,34 @@ The rest is the begining of my documentation i hoped (Already I have spent almos
 
 It is time I push this writeup as an update. 1hr of work is work.
 
+I just finished testing (20240215T05:53PM) the Add Open Bracket and it was ready to be added as a feature to the Bracket button and it performed perfectly perfect. 
+Sincerely, TDD is the best way to develop apps.
+
+Okay, alot happened I discovered some scenario i did not it of, and they didn't give good computation. I wrote test to method for some. 
+But along the line I could easily fix them without writing a Test method first so i went ahead and fix the bugs and without a test.
+I am not giving up on the TDD but i think you may not write all the test at first but you can keep working on it. 
+
+I am yet to test the inner brakets. I will leave them till tomorrow. But I have a strong feeling they will work out of the box. 
+The TDD assist me alot in thinking and writing modularly. 
+
+See you tomorrow.
+(By the way it not easy implementing a scientific calaculator. Don't allow any of us teaching coding use calculator as an example mess with you.)
+
 ## Work
 - Add documentation
 
 ### Test
-- Add Open bracket 
-- Add Close bracket
+- Add Open bracket -> (Done 20240215T05:53PM) 
+- Add Close bracket -> (20240215T0934PM)
 - Add inner(s) Open and Close brackets
 
 ### Features
 - Add Open bracket 
 - Add Close bracket
 - Add inner(s) Open and Close brackets
-- 
+
+
+- ![alt text](https://github.com/goke-ai/checalc/blob/main/image.jpg?raw=true)
 
 
 

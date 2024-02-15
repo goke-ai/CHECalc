@@ -26,6 +26,9 @@ public partial class MainViewModel : ObservableObject
     string prevKey = string.Empty;
     decimal? prevValue = null;
     string prevOperator= string.Empty;
+
+    List<CalculatorStore> stores = new List<CalculatorStore>();
+
     string[] numbers = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
     string[] operators = { "+", "-", "/", "*", "="};
 
@@ -81,14 +84,30 @@ public partial class MainViewModel : ObservableObject
             {
                 Text = KeyText = kText;
                 EquationText = eqText;
-            }
-            
+            }            
         }
-
-
-
-
-        prevKey = key;
+        else if (key == "(")
+        {
+            var kText = KeyText;
+            var eqText = EquationText;
+            bool isDone = calculatorInput.BracketOpen(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators, stores);
+            if (isDone)
+            {
+                Text = KeyText = kText;
+                EquationText = eqText;
+            }
+        }
+        else if (key == ")")
+        {
+            var kText = KeyText;
+            var eqText = EquationText;
+            bool isDone = calculatorInput.BracketClose(ref kText, ref prevKey, ref prevValue, ref prevOperator, ref eqText, key, numbers, operators, stores);
+            if (isDone)
+            {
+                Text = KeyText = kText;
+                EquationText = eqText;
+            }
+        }
     }
 }
     
